@@ -1,0 +1,55 @@
+name: test_sli
+label: test_sli 
+description: test_sli
+
+type: panos
+
+variables:
+
+snippets:
+  - name: snippet_1
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]
+    element: |-
+            <address>
+        <entry name="test-pc">
+          <ip-netmask>1.1.1.1</ip-netmask>
+        </entry>
+      </address>
+      
+  - name: snippet_2
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/vsys/entry[@name="vsys1"]/rulebase/security/rules
+    element: |-
+            <entry name="tstest">
+        <to>
+          <member>any</member>
+        </to>
+        <from>
+          <member>any</member>
+        </from>
+        <source>
+          <member>test-pc</member>
+        </source>
+        <destination>
+          <member>any</member>
+        </destination>
+        <source-user>
+          <member>any</member>
+        </source-user>
+        <category>
+          <member>any</member>
+        </category>
+        <application>
+          <member>any</member>
+        </application>
+        <service>
+          <member>application-default</member>
+        </service>
+        <source-hip>
+          <member>any</member>
+        </source-hip>
+        <destination-hip>
+          <member>any</member>
+        </destination-hip>
+        <action>allow</action>
+      </entry>
+      
